@@ -2,8 +2,6 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import UserRegisterForm, UpdateUserForm, UpdateProfileForm
 from django.contrib.auth.decorators import login_required
-# from django.contrib.auth.views import logout_then_login
-# from django.contrib.auth import logout
 
 def register(request):
     if request.method == 'POST':
@@ -17,10 +15,6 @@ def register(request):
     else: 
         form = UserRegisterForm()
     return render(request, 'users/register.html', {'form':form})
-
-# def logout_view(request):
-#     logout(request)
-#     redirect('login')
 
 @login_required
 def profile(request):
@@ -45,3 +39,9 @@ def profile(request):
         'profile_form': profile_form
     }
     return render (request, 'users/profile.html', context)
+
+# class CustomPasswordResetView(PasswordResetView):
+#     email_template_name = 'registration/custom_password_reset_email.html'
+#     subject_template_name = 'registration/custom_password_reset_subject.txt'
+
+
